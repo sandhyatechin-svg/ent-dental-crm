@@ -27,6 +27,7 @@ export function PatientRegistrationForm({ onSubmit, isSubmitting }: PatientRegis
     patient_id: '',
     doctor: '',
     fee: '',
+    revisit_charge: '0',
     remarks: '',
     payment_method: 'cash' as 'cash' | 'online'
   })
@@ -122,7 +123,8 @@ export function PatientRegistrationForm({ onSubmit, isSubmitting }: PatientRegis
     onSubmit({
       ...formData,
       age: parseInt(formData.age),
-      fee: parseFloat(formData.fee)
+      fee: parseFloat(formData.fee),
+      revisit_charge: parseFloat(formData.revisit_charge) || 0
     })
   }
 
@@ -138,6 +140,7 @@ export function PatientRegistrationForm({ onSubmit, isSubmitting }: PatientRegis
       patient_id: '',
       doctor: '',
       fee: '',
+      revisit_charge: '0',
       remarks: '',
       payment_method: 'cash'
     })
@@ -325,7 +328,7 @@ export function PatientRegistrationForm({ onSubmit, isSubmitting }: PatientRegis
           </Select>
         </div>
         <div className="space-y-2">
-          <Label htmlFor="fee">Fee *</Label>
+          <Label htmlFor="fee">Doctor Fee *</Label>
           <Input
             id="fee"
             type="number"
@@ -337,6 +340,35 @@ export function PatientRegistrationForm({ onSubmit, isSubmitting }: PatientRegis
           />
         </div>
       </div>
+
+      {/* Revisit Charge - Only for existing patients */}
+      {formData.patient_type === 'old' && (
+        <div className="space-y-4">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="revisit_charge">Revisit Charge (₹)</Label>
+              <Input
+                id="revisit_charge"
+                type="number"
+                value={formData.revisit_charge}
+                onChange={(e) => handleInputChange('revisit_charge', e.target.value)}
+                placeholder="0"
+                min="0"
+                step="0.01"
+              />
+              <p className="text-xs text-muted-foreground">
+                Additional charge for revisiting patients (adjustable as needed)
+              </p>
+            </div>
+            <div className="space-y-2">
+              <Label>Total Fee</Label>
+              <div className="h-10 px-3 py-2 bg-muted border border-input rounded-md flex items-center text-sm font-medium">
+                ₹{(parseFloat(formData.fee) || 0) + (parseFloat(formData.revisit_charge) || 0)}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="space-y-2">
         <Label htmlFor="remarks">Remarks</Label>
