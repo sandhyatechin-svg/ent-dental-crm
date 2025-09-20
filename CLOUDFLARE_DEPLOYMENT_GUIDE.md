@@ -113,11 +113,29 @@ Once deployed, your app will be available at:
 
 ## 🔐 User Accounts
 
-Your demo users will work on the live site:
-- **Admin**: `admin@entdental.com` / `admin123`
-- **Doctor**: `doctor@entdental.com` / `doctor123`
-- **Pharmacist**: `pharmacist@entdental.com` / `pharmacist123`
-- **Receptionist**: `reception@entdental.com` / `reception123`
+**⚠️ IMPORTANT**: Demo credentials have been removed from the login page for security.
+
+### Setting Up Production Users
+
+You need to create production user accounts in your Supabase Auth dashboard:
+
+1. Go to your Supabase project dashboard
+2. Navigate to **Authentication** → **Users**
+3. Click **"Add user"** to create accounts for:
+   - **Admin**: Create with admin privileges
+   - **Doctor**: Create with doctor role
+   - **Pharmacist**: Create with pharmacist role  
+   - **Receptionist**: Create with receptionist role
+
+4. For each user, also update their role in the `public.users` table:
+   ```sql
+   UPDATE public.users 
+   SET role = 'admin' 
+   WHERE email = 'admin@yourdomain.com';
+   ```
+
+### Demo Users (Development Only)
+If you need demo users for testing, you can temporarily add them back to the login page or create them in Supabase Auth.
 
 ## 🚨 Troubleshooting
 
