@@ -1,19 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Disable ESLint during build for deployment
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  // Disable TypeScript type checking during build for deployment
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  // Output configuration for static export (if needed)
-  output: 'standalone',
-  // Image optimization
-  images: {
-    unoptimized: true,
-  },
+  // Allow cross-origin requests from mobile devices
+  experimental: {
+    allowedDevOrigins: ['172.20.10.3', '192.168.1.58', '192.168.1.79', 'localhost']
+  }
 }
 
 module.exports = nextConfig

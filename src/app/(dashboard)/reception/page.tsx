@@ -27,7 +27,6 @@ interface PatientData {
   patient_type: 'new' | 'old'
   doctor: string
   fee: number
-  revisit_charge: number
   remarks: string
   payment_method: 'cash' | 'online'
   visit_id: string
@@ -123,10 +122,6 @@ export default function ReceptionPage() {
       // Create visit record
       console.log('Creating visit record...')
       
-      const doctorFee = parseFloat(formData.fee) || 500.00
-      const revisitFee = parseFloat(formData.revisit_charge) || 0.00
-      const totalFee = doctorFee + revisitFee
-
       const visitData = {
         patient_id: patientRecord.id,
         doctor_id: doctorId,
@@ -135,11 +130,11 @@ export default function ReceptionPage() {
         visit_type: 'consultation',
         status: 'scheduled',
         notes: formData.remarks,
-        prescription: `Fee: ${doctorFee}, Revisit: ${revisitFee}, Payment: ${formData.payment_method}`,
-        doctor_fee: doctorFee,
-        revisit_fee: revisitFee,
+        prescription: `Fee: ${formData.fee}, Payment: ${formData.payment_method}`,
+        doctor_fee: parseFloat(formData.fee) || 500.00,
+        revisit_fee: 0.00,
         doctor_change_fee: 0.00,
-        total_fee: totalFee
+        total_fee: parseFloat(formData.fee) || 500.00
       }
       
       console.log('Visit data to insert:', visitData)
@@ -169,8 +164,7 @@ export default function ReceptionPage() {
         blood_group: formData.blood_group,
         patient_type: formData.patient_type,
         doctor: formData.doctor,
-        fee: doctorFee,
-        revisit_charge: revisitFee,
+        fee: formData.fee,
         remarks: formData.remarks,
         payment_method: formData.payment_method,
         visit_id: visit.id
