@@ -391,7 +391,7 @@ export default function DoctorDashboard() {
                 </div>
                 <div>
                   <h3 className="font-semibold">Refresh</h3>
-                  <p className="text-sm text-muted-foreground">Reload today's data</p>
+                  <p className="text-sm text-muted-foreground">Reload today&apos;s data</p>
                 </div>
               </div>
             </CardContent>
@@ -410,8 +410,8 @@ export default function DoctorDashboard() {
                   <User className="h-6 w-6 text-blue-600" />
                 </div>
                 <div>
-                  <h3 className="font-semibold">Today's Patients</h3>
-                  <p className="text-sm text-muted-foreground">View today's schedule</p>
+                  <h3 className="font-semibold">Today&apos;s Patients</h3>
+                  <p className="text-sm text-muted-foreground">View today&apos;s schedule</p>
                 </div>
               </div>
             </CardContent>
@@ -423,9 +423,6 @@ export default function DoctorDashboard() {
             if (printWindow) {
               const today = new Date().toLocaleDateString()
               const doctorName = currentDoctor || 'Doctor'
-              const patientsList = patients.map(p => 
-                `${p.patients.first_name} ${p.patients.last_name} - ${p.visit_time} (${p.visit_type})`
-              ).join('\n')
               
               printWindow.document.write(`
                 <!DOCTYPE html>
@@ -472,7 +469,7 @@ export default function DoctorDashboard() {
                 </div>
                 <div>
                   <h3 className="font-semibold">Print Schedule</h3>
-                  <p className="text-sm text-muted-foreground">Print today's schedule</p>
+                  <p className="text-sm text-muted-foreground">Print today&apos;s schedule</p>
                 </div>
               </div>
             </CardContent>

@@ -32,8 +32,8 @@ export default function AdminDashboard() {
     totalVisitsIncome: 0,
     totalMedicineSales: 0
   })
-  const [visitsData, setVisitsData] = useState<any[]>([])
-  const [medicineSalesData, setMedicineSalesData] = useState<any[]>([])
+  const [visitsData, setVisitsData] = useState<Record<string, unknown>[]>([])
+  const [medicineSalesData, setMedicineSalesData] = useState<Record<string, unknown>[]>([])
   const [chartData, setChartData] = useState({
     patientsPerDay: [],
     incomePerDay: [],
