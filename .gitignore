@@ -84,3 +84,11 @@ jspm_packages/
 # Temporary folders
 tmp/
 temp/
+
+# Deployment packages
+deployment-package/
+*.zip
+
+# Large files that aren't needed
+*.sql
+*.md
